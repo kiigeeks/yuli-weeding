@@ -15,7 +15,22 @@
         <link href="./dist/output.css" rel="stylesheet">
     </head>
     
-    <body class="bg-gray-100 text-gray-800">
+    <body class="bg-gray-100 text-gray-800 relative">
+
+        <section id="popup-box" class="hidden bg-cover bg-center fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center" style="background-image: url('./dist/images/bg-cover-2.jpg');">
+            <div class="text-center text-white bg-black/40 py-10 px-5 md:px-20 rounded-xl w-11/12 md:w-fit">
+                <p class="text-xl md:text-2xl font-light font-poppins capitalize">
+                    Sdr/i
+                </p>
+                <p class="text-3xl md:text-4xl font-semibold font-poppins capitalize" id="namaTamu">
+                
+                </p>
+                <p class="mt-5 text-xl md:text-2xl font-normal font-poppins capitalize">
+                    Kami Mengundang Anda 
+                </p>
+                <button id="submitUndangan" class="mt-3 px-5 py-2 bg-grayPrimary text-white font-poppins rounded-lg uppercase tracking-wider">Buka Undangan</button>
+            </div>
+        </section>
 
         <!-- Section: Cover -->
         <section class="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" style="background-image: url('./dist/images/bg-weeding-2.jpg');">
@@ -81,5 +96,31 @@
             <p class="text-sm md:text-base mt-2">Qs. Ar Rum ayat 21</p>
         </section>
 
+        <audio loop="loop" autoplay="autoplay" id="weddingAudio">
+            <source src="./dist/audio.mp3" type="audio/mpeg" />
+        </audio>
+
+        <script>
+            // Mendapatkan referensi ke elemen tombol
+            var myButton = document.getElementById('submitUndangan');
+            var popup = document.getElementById('popup-box');
+            var audioPlay = document.getElementById('weddingAudio');
+    
+            document.addEventListener('DOMContentLoaded', function() {
+            // Kode JavaScript yang ingin dijalankan saat halaman dimuat
+                popup.classList.remove('hidden');
+                const urlParams = new URLSearchParams(window.location.search);
+                const parameter = urlParams.get('name');
+                const namaTamu = document.getElementById('namaTamu');
+                namaTamu.textContent = parameter;
+            });
+    
+            // Menambahkan fungsi onclick
+            myButton.onclick = function() {
+                // Tindakan atau fungsi yang ingin dijalankan saat tombol diklik
+                audioPlay.play();
+                popup.classList.add('hidden');
+            };
+        </script>
     </body>
 </html>
